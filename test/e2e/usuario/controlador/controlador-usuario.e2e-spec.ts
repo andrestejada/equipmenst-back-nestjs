@@ -102,5 +102,18 @@ describe('Pruebas al controlador de usuarios', () => {
       .expect(HttpStatus.BAD_REQUEST);
     expect(response.body.message).toBe(mensaje);
     expect(response.body.statusCode).toBe(HttpStatus.BAD_REQUEST);
+    
+  });
+
+  it('should ', async() => {
+    const usuario: ComandoRegistrarUsuario = {
+      nombre: 'Lorem ipsum',
+      fechaCreacion: (new Date()).toISOString(),
+      clave: '1234',
+    };
+    const response = await request(app.getHttpServer())
+    .post('/usuarios').send(usuario)
+
+    console.log(response.body);
   });
 });

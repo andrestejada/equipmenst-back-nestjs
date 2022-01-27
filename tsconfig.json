@@ -9,7 +9,13 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "transform": "ts-auto-mock/transformer",
+        "cacheBetweenTests": false
+      }
+    ]
   },
   "exclude": ["node_modules", "dist"]
 }

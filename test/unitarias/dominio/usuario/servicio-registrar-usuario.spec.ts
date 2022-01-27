@@ -5,6 +5,7 @@ import { SinonStubbedInstance } from 'sinon';
 import { createStubObj } from '../../../util/create-object.stub';
 
 
+
 describe('ServicioRegistrarUsuario', () => {
 
   let servicioRegistrarUsuario: ServicioRegistrarUsuario;

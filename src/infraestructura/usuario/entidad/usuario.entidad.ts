@@ -13,4 +13,5 @@ export class UsuarioEntidad {
 
   @Column()
   fechaCreacion: Date;
+
 }

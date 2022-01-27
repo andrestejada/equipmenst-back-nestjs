@@ -12,12 +12,19 @@ async function bootstrap() {
   const logger = await app.resolve(AppLogger);
   const configService = app.get(ConfigService);
 
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
   app.useGlobalFilters(new FiltroExcepcionesDeNegocio(logger));
 
   const swaggerOptions = new DocumentBuilder()
     .setTitle('Bloque Arquitectura Hexagonal Node')
-    .setDescription('Bloque que hace uso de Nest.js para la creación de API\'s con Node.js')
+    .setDescription(
+      "Bloque que hace uso de Nest.js para la creación de API's con Node.js",
+    )
     .setVersion('1.0')
     .build();
 

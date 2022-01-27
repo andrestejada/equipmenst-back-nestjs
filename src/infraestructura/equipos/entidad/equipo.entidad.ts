@@ -1,17 +1,19 @@
-import { IsString } from 'class-validator';
-import { Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity({ name: 'equipo' })
-export class Equipo {
+@Entity({ name: 'equipos' })
+export class EquipoEntidad {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @IsString()
+  @Column()
   codigo: number;
 
-  @IsString()
+  @Column()
   descripcion: string;
 
-  @IsString()
+  @Column()
   ubicacion: string;
+
+  @Column({ name: 'fecha_mantenimiento', type: 'timestamptz', nullable: true })
+  fechaMantenimiento: Date;
 }
