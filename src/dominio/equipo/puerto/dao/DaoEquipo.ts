@@ -1,4 +1,3 @@
-import { EquipoDto } from "src/aplicacion/equipo/consulta/dto/equipo.dto";
 import { PaginadorDto } from "src/aplicacion/equipo/consulta/dto/PaginadorDto";
 import { EquipoFiltradoDto } from '../../../../aplicacion/equipo/consulta/dto/EquiposFiltradosDto';
 import { ObtenerEquiposDto } from '../../../../aplicacion/equipo/consulta/dto/ObtenerEquiposDto';

@@ -15,7 +15,7 @@ export class EquipoEntidad {
   @Column()
   ubicacion: string;
 
-  @ManyToOne(_type=>UsuarioEntidad,(usuario)=>usuario.equipos,{cascade:true})
+  @ManyToOne(()=>UsuarioEntidad,(usuario)=>usuario.equipos,{cascade:true})
   @JoinColumn({name:'user_id'})
   usuario:UsuarioEntidad
 

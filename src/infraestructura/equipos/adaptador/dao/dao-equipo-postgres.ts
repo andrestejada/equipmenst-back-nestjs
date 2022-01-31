@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { EquipoDto } from 'src/aplicacion/equipo/consulta/dto/equipo.dto';
 import { DaoEquipo } from 'src/dominio/equipo/puerto/dao/DaoEquipo';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EquipoEntidad } from '../../entidad/equipo.entidad';
@@ -7,7 +6,6 @@ import { Repository } from 'typeorm';
 import { PaginadorDto } from 'src/aplicacion/equipo/consulta/dto/PaginadorDto';
 import { EquipoFiltradoDto } from '../../../../aplicacion/equipo/consulta/dto/EquiposFiltradosDto';
 import { ObtenerEquiposDto } from '../../../../aplicacion/equipo/consulta/dto/ObtenerEquiposDto';
-import { classToPlain, plainToClass, serialize } from 'class-transformer';
 
 @Injectable()
 export class DaoEquipoPostgres implements DaoEquipo {

@@ -19,7 +19,7 @@ export class UsuarioEntidad {
   @Column()
   clave: string;
   
-  @OneToMany(_type=>EquipoEntidad, (equipo)=>equipo.usuario)
+  @OneToMany(()=>EquipoEntidad, (equipo)=>equipo.usuario)
   equipos:EquipoEntidad[];
 
   @CreateDateColumn({ name:'create_at', type:'timestamptz'})

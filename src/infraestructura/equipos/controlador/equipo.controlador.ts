@@ -20,7 +20,6 @@ import { ManejadorEditarEquipo } from 'src/aplicacion/equipo/comando/editar-equi
 import { ComandoEditarEquipo } from '../../../aplicacion/equipo/comando/editar-equipo.comando';
 import { PaginadorDto } from '../../../aplicacion/equipo/consulta/dto/PaginadorDto';
 import { ManjeadorPaginarEquipos } from 'src/aplicacion/equipo/consulta/paginarEquiposManejador';
-import { Reflector } from '@nestjs/core';
 
 @UseInterceptors(ClassSerializerInterceptor)
 @Controller('equipos')
