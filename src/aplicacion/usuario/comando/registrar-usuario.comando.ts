@@ -1,16 +1,24 @@
-import { IsDateString, IsString } from 'class-validator';
+import { IsEmail, IsString, MaxLength, MinLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class ComandoRegistrarUsuario {
+
   @IsString()
-  @ApiProperty({ example: 'William'})
+  @ApiProperty({ example: 'Andres'})
   public nombre: string;
 
   @IsString()
-  @ApiProperty({ minLength: 4, example: '1234' })
-  public clave: string;
+  @ApiProperty({ example: 'Tejada'})
+  public apellido: string;
 
-  @IsDateString()
-  @ApiProperty({ type: Date })
-  public fechaCreacion: string;
+  @IsEmail()
+  @ApiProperty({ example: 'correo@correo.com'})
+  public correo: string;
+
+  @IsString()
+  @MinLength(6)
+  @MaxLength(20)
+  @ApiProperty({ minLength: 6, example: '123456' })
+  public clave: string;
+  
 }

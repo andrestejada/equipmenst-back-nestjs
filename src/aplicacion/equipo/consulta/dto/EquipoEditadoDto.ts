@@ -3,7 +3,7 @@ import { Expose } from 'class-transformer';
 import { IsNumber, IsString ,IsDateString } from 'class-validator';
 
 @Expose()
-export class ComandoEditarEquipoRespuesta {
+export class EquipoEditadoDto {
   @Expose()
   @IsNumber()
   @ApiProperty({ example: 1 })
@@ -19,7 +19,7 @@ export class ComandoEditarEquipoRespuesta {
   @ApiProperty({ example: 'descripcion del equipo' })
   descripcion: string;
 
-  @Expose()
+  @Expose() 
   @IsString()
   @ApiProperty({ example: 'Laboratorio' })
   ubicacion: string;

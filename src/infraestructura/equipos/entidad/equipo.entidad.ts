@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { UsuarioEntidad } from '../../usuario/entidad/usuario.entidad';
 
 @Entity({ name: 'equipos' })
 export class EquipoEntidad {
@@ -13,6 +14,10 @@ export class EquipoEntidad {
 
   @Column()
   ubicacion: string;
+
+  @ManyToOne(_type=>UsuarioEntidad,(usuario)=>usuario.equipos,{cascade:true})
+  @JoinColumn({name:'user_id'})
+  usuario:UsuarioEntidad
 
   @Column({ name: 'fecha_mantenimiento', type: 'timestamptz', nullable: true })
   fechaMantenimiento: Date;

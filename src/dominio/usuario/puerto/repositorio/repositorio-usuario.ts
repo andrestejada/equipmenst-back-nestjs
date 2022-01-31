@@ -1,6 +1,8 @@
 import { Usuario } from '../../modelo/usuario';
+import { UsuarioDto } from '../../../../aplicacion/usuario/consulta/dto/usuario.dto';
 
 export abstract class RepositorioUsuario {
-  abstract async existeNombreUsuario(nombre: string): Promise<boolean>;
-  abstract async guardar(usuario: Usuario);
+  abstract existeCorreo(correo: string): Promise<boolean>;
+  abstract obtenerPorId(id:number):Promise<Usuario>
+  abstract guardar(usuario: Usuario):Promise<UsuarioDto>;
 }

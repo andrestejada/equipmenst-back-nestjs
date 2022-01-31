@@ -1,25 +1,17 @@
-import { ErrorLongitudInvalida } from 'src/dominio/errores/error-longitud-invalida';
 
-const NUMERO_MINIMO_CARACTERES_CLAVE = 4;
 export class Usuario {
   readonly #nombre: string;
+  readonly #apellido: string;
+  readonly #correo: string;
   readonly #clave: string;
-  readonly #fechaCreacion: Date;
 
-  constructor(nombre: string, clave: string, fechaCreacion: string) {
-    this.validarTamanoClave(clave);
+  constructor(nombre: string, apellido:string ,correo:string , clave: string) {
     this.#nombre = nombre;
+    this.#apellido  = apellido  
+    this.#correo  = correo
     this.#clave = clave;
-    this.#fechaCreacion = new Date(fechaCreacion);
   }
 
-  private validarTamanoClave(clave: string) {
-    if (clave.length < NUMERO_MINIMO_CARACTERES_CLAVE) {
-      throw new ErrorLongitudInvalida(
-        `El tamaño mínimo de la clave debe ser ${NUMERO_MINIMO_CARACTERES_CLAVE}`,
-      );
-    }
-  }
 
   get nombre(): string {
     return this.#nombre;
@@ -29,7 +21,13 @@ export class Usuario {
     return this.#clave;
   }
 
-  get fechaCreacion(): Date {
-    return this.#fechaCreacion;
+  get apellido():string{
+    return this.#apellido
   }
+
+  get correo():string{
+    return this.#correo
+  }
+
+  
 }

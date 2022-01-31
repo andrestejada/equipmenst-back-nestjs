@@ -8,11 +8,11 @@ export class ServicioRegistrarUsuario {
   }
 
   async ejecutar(usuario: Usuario) {
-    if (await this._repositorioUsuario.existeNombreUsuario(usuario.nombre)) {
+    if (await this._repositorioUsuario.existeCorreo(usuario.correo)) {
       throw new ErrorDeNegocio(
-        `El nombre de usuario ${usuario.nombre} ya existe`,
+        `El correo  ${usuario.correo} ya existe`,
       );
     }
-    await this._repositorioUsuario.guardar(usuario);
+    return await this._repositorioUsuario.guardar(usuario);
   }
 }

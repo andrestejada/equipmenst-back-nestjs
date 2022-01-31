@@ -23,8 +23,9 @@ import { servicioEliminarEquipoProveedor } from '../../../../src/infraestructura
 import { ServicioEditarEquipo } from '../../../../src/dominio/equipo/servicio/servicio-editarEquipo';
 import { servicioEditarEquipoProveedor } from 'src/infraestructura/equipos/proveedor/servicio/servicio-editarEquipo.proveedor';
 import { ManejadorEditarEquipo } from '../../../../src/aplicacion/equipo/comando/editar-equipo.manejador';
-import { ComandoCrearEquipoRespuesta } from '../../../../src/aplicacion/equipo/comando/crear-equipo-repuesta.comado';
 import { ManjeadorPaginarEquipos } from '../../../../src/aplicacion/equipo/consulta/paginarEquiposManejador';
+import { Usuario } from 'src/dominio/usuario/modelo/usuario';
+
 
 const sinonSandbox = createSandbox();
 describe('Pruebas controlador de equipos', () => {
@@ -87,19 +88,28 @@ describe('Pruebas controlador de equipos', () => {
     'testEquipment',
     'fabrica',
     '2022-01-21T18:15:13.195Z',
+    new Usuario('andres','tejada','correo@correo.com','12345')
   );
-  const { codigo, fechaMantenimiento, ubicacion, descripcion } = equipo;
+  const { codigo, fechaMantenimiento, ubicacion, descripcion ,usuario } = equipo;
 
-  const data: ComandoCrearEquipoRespuesta = {
+  const data = {
     id: 1,
     codigo,
     fechaMantenimiento: fechaMantenimiento.toISOString(),
     ubicacion,
     descripcion,
+    usuario
   };
 
   it('should be save correctly a equipment', async () => {
-    jest.spyOn(repositorioEquipo, 'crearEquipo').mockResolvedValue(data);
+    jest.spyOn(repositorioEquipo, 'crearEquipo').mockResolvedValue({
+      codigo:123,
+      descripcion:'equipo1',
+      fechaMantenimiento:'2022-01-21T18:15:13.195Z',
+      ubicacion:'ubicacion1',
+      usuarioId:1,
+      id:1      
+    });
     const response = await request(app.getHttpServer()).post('/equipos');
     expect(repositorioEquipo.crearEquipo).toHaveBeenCalledWith(equipo);
     expect(response.status).toBe(201);
@@ -131,6 +141,15 @@ describe('Pruebas controlador de equipos', () => {
   });
 
   it('should be return all equipments avaliable', async () => {
+
+    const data={
+      codigo:123,
+      descripcion:'equipo1',
+      fechaMantenimiento:'2022-01-21T18:15:13.195Z',
+      ubicacion:'ubicacion1',
+      usuario:1,
+      id:1
+    }
     jest.spyOn(daoEquipo, 'obtenerTodo').mockResolvedValue([data]);
     const response = await request(app.getHttpServer())
       .get('/equipos')

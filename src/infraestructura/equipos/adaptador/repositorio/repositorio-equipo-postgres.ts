@@ -4,9 +4,9 @@ import { RepositorioEquipo } from '../../../../dominio/equipo/puerto/repositorio
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { EquipoEntidad } from '../../entidad/equipo.entidad';
-import { ComandoCrearEquipoRespuesta } from '../../../../aplicacion/equipo/comando/crear-equipo-repuesta.comado';
 import { plainToClass } from 'class-transformer';
-import { ComandoEditarEquipoRespuesta } from '../../../../aplicacion/equipo/comando/editar-equipo.-respuesta.comando';
+import { EquipoEditadoDto } from '../../../../aplicacion/equipo/consulta/dto/EquipoEditadoDto';
+import { EquipoCreadoDto } from '../../../../aplicacion/equipo/consulta/dto/EquipoCreadoDto';
 
 @Injectable()
 export class RepositorioEquipoPostgres implements RepositorioEquipo {
@@ -21,7 +21,7 @@ export class RepositorioEquipoPostgres implements RepositorioEquipo {
     return true
   }
 
-  async editarEquipo(id: number, equipo: Partial<Equipo>): Promise<ComandoEditarEquipoRespuesta> {
+  async editarEquipo(id: number, equipo: Partial<Equipo>): Promise<EquipoEditadoDto> {
     const resp = await this.repositorio
       .createQueryBuilder()
       .update(equipo)
@@ -35,12 +35,11 @@ export class RepositorioEquipoPostgres implements RepositorioEquipo {
     return equipoEditado
   }
 
-  async crearEquipo(equipo: Equipo): Promise<ComandoCrearEquipoRespuesta> {
+  async crearEquipo(equipo: Equipo): Promise<EquipoCreadoDto> {
     const entidad = this.repositorio.create(equipo);
     await this.repositorio.save(entidad);
-    const respuesta = plainToClass(ComandoCrearEquipoRespuesta, entidad, {
-      excludeExtraneousValues: true,
-    });
+    const respuesta = plainToClass(EquipoCreadoDto, entidad);
+    respuesta.usuarioId = entidad.usuario.id
     return respuesta;
   }
 

@@ -1,5 +1,6 @@
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
   Delete,
   Get,
@@ -8,8 +9,7 @@ import {
   Post,
   Put,
   Query,
-  ValidationPipe,
-  UsePipes,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ManjeadorObtenerEquipos } from '../../../aplicacion/equipo/consulta/obtener-equipos.manejador';
 import { EquipoDto } from '../../../aplicacion/equipo/consulta/dto/equipo.dto';
@@ -20,7 +20,9 @@ import { ManejadorEditarEquipo } from 'src/aplicacion/equipo/comando/editar-equi
 import { ComandoEditarEquipo } from '../../../aplicacion/equipo/comando/editar-equipo.comando';
 import { PaginadorDto } from '../../../aplicacion/equipo/consulta/dto/PaginadorDto';
 import { ManjeadorPaginarEquipos } from 'src/aplicacion/equipo/consulta/paginarEquiposManejador';
+import { Reflector } from '@nestjs/core';
 
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('equipos')
 export class EquipoControlador {
   constructor(
@@ -39,6 +41,7 @@ export class EquipoControlador {
   obtenerEquipos(@Query() params: PaginadorDto) {
     return this.manejadorPaginarEquipos.ejecutar(params);
   }
+
   @Post()
   crearEquipo(@Body() comandoCrearEquipo: ComandoCrearEquipo) {
     return this.manejadorCrearEquipo.ejecutar(comandoCrearEquipo);

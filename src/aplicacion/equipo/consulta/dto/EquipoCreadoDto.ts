@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Expose } from 'class-transformer';
+import { Exclude, Expose} from 'class-transformer';
 import { IsNumber, IsString ,IsDateString } from 'class-validator';
 
-@Expose()
-export class ComandoCrearEquipoRespuesta {
+@Exclude()
+export class EquipoCreadoDto {
   @Expose()
   @IsNumber()
   @ApiProperty({ example: 1 })
@@ -28,4 +28,9 @@ export class ComandoCrearEquipoRespuesta {
   @IsDateString()
   @ApiProperty({example:'2022-01-18T19:38:54.000Z'})
   fechaMantenimiento: string
+
+  @Expose()
+  usuarioId:number
+
 }
+

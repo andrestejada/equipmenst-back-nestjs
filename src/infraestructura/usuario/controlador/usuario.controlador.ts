@@ -12,9 +12,8 @@ export class UsuarioControlador {
   ) {}
 
   @Post()
-  @UsePipes(new ValidationPipe({ transform: true }))
   async crear(@Body() comandoRegistrarUsuario: ComandoRegistrarUsuario) {
-    await this._manejadorRegistrarUsuario.ejecutar(comandoRegistrarUsuario);
+    return await this._manejadorRegistrarUsuario.ejecutar(comandoRegistrarUsuario);
   }
 
   @Get()

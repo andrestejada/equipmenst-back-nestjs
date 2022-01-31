@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ServicioEditarEquipo } from '../../../dominio/equipo/servicio/servicio-editarEquipo';
 import { ComandoEditarEquipo } from './editar-equipo.comando';
-import { Equipo } from '../../../dominio/equipo/modelo/equipo';
 
 @Injectable()
 export class ManejadorEditarEquipo {

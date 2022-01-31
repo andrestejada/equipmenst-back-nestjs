@@ -8,12 +8,9 @@ export class ManejadorRegistrarUsuario {
   constructor(private _servicioRegistrarUsuario: ServicioRegistrarUsuario) {}
 
   async ejecutar(comandoRegistrarUsuario: ComandoRegistrarUsuario) {
-    await this._servicioRegistrarUsuario.ejecutar(
-      new Usuario(
-        comandoRegistrarUsuario.nombre,
-        comandoRegistrarUsuario.clave,
-        comandoRegistrarUsuario.fechaCreacion,
-      ),
+    const {nombre,apellido,clave,correo} = comandoRegistrarUsuario
+    return await this._servicioRegistrarUsuario.ejecutar(
+      new Usuario(nombre,apellido,correo,clave),
     );
   }
 }
