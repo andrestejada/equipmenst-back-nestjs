@@ -7,6 +7,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { NodeEnv } from './configuracion/environment/env-node.enum';
 import { databaseConfigFactory } from './configuracion/database.config';
 import { EquipoModule } from './equipos/equipo.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   providers: [AppLogger],
@@ -26,6 +27,7 @@ import { EquipoModule } from './equipos/equipo.module';
     }),
     UsuarioModule,
     EquipoModule,
+    AuthModule
   ],
 })
 export class InfraestructuraModule {

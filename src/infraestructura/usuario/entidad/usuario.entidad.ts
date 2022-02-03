@@ -1,6 +1,6 @@
-import { Exclude } from 'class-transformer';
 import { EquipoEntidad } from 'src/infraestructura/equipos/entidad/equipo.entidad';
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Role } from '../roles/role.enum';
 
 @Entity({ name: 'usuario' })
 export class UsuarioEntidad {
@@ -21,6 +21,9 @@ export class UsuarioEntidad {
   
   @OneToMany(()=>EquipoEntidad, (equipo)=>equipo.usuario)
   equipos:EquipoEntidad[];
+
+  @Column({type:'enum',enum:Role,default:Role.Admin})
+  role:Role
 
   @CreateDateColumn({ name:'create_at', type:'timestamptz'})
   createAt:Date

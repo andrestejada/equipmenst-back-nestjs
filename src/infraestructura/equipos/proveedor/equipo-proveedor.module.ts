@@ -15,7 +15,6 @@ import { ManejadorEditarEquipo } from '../../../aplicacion/equipo/comando/editar
 import { ServicioEditarEquipo } from '../../../dominio/equipo/servicio/servicio-editarEquipo';
 import { servicioEditarEquipoProveedor } from './servicio/servicio-editarEquipo.proveedor';
 import { ManjeadorPaginarEquipos } from '../../../aplicacion/equipo/consulta/paginarEquiposManejador';
-import { UsuarioModule } from '../../usuario/usuario.module';
 import { UsuarioProveedorModule } from '../../usuario/proveedor/usuario-proveedor.module';
 
 @Module({
